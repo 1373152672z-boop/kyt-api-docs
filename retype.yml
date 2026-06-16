@@ -1,0 +1,13 @@
+input: .
+output: _retype
+url: https://1373152672z-boop.github.io/kyt-api-docs
+branding:
+  title: Trustformer KYT OpenAPI
+  label: Docs
+links:
+  - text: V3
+    link: /kyt-open-api-developer-document/v3/
+  - text: V2
+    link: /kyt-open-api-developer-document/v2/
+footer:
+  copyright: "© 2026 Trustformer"
