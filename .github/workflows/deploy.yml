@@ -6,35 +6,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  publish:
     runs-on: ubuntu-latest
     permissions:
       contents: read
       pages: write
       id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: retypeapp/action-build@latest
+      - uses: retypeapp/action-github-pages@latest
         with:
-          node-version: 20
-
-      - name: Install Retype
-        run: npm install -g retypeapp
-
-      - name: Build static site
-        run: retype build
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: _retype
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
-        id: deployment
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
