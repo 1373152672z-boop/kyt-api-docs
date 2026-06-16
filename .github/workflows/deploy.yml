@@ -1,9 +1,12 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [retype-setup]
   workflow_dispatch:
+    inputs:
+      branch:
+        description: '要部署的分支'
+        required: true
+        default: 'retype-setup'
 
 jobs:
   publish:
@@ -14,6 +17,8 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch }}
       - uses: retypeapp/action-build@latest
       - uses: retypeapp/action-github-pages@latest
         with:
