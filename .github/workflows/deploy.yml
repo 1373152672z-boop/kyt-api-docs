@@ -30,7 +30,7 @@ jobs:
 
       - run: retype build
 
-      - uses: actions/upload-pages-artifact@v4
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: _retype
 
